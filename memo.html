@@ -68,7 +68,7 @@
     <div class="card memo shadow-1">
       4
     </div>
-    <div class="card shadow-2 default noselect">
+    <div class="card shadow-2 default noselect" id="create-memo">
       <!-- <span class="material-symbols-outlined absolute-center">
         add
       </span> -->
@@ -78,6 +78,15 @@
 
   <div class="overlay absolute-center" id="loader-overlay">
     <div class="loader loader-white absolute-center overlay-item" id="loader-progressbar"></div>
+  </div>
+
+  <div id="addMemoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Add Memo</h2>
+      <textarea id="memoText" placeholder="Write your memo..." rows="4"></textarea>
+      <button id="saveMemo">Save</button>
+    </div>
   </div>
 
 
