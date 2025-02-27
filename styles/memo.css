@@ -34,11 +34,14 @@ body {
     background: #fff;
     border-radius: 2px;
     display: inline-block;
-    height: 300px;
     margin: 1rem;
     position: relative;
-    width: 300px;
     border-radius: 2px;
+}
+
+.card.memo{
+    width: 300px;
+    height: 300px;
 }
 
 .shadow-1 {
@@ -281,16 +284,23 @@ textarea {
     color: white;
     font-weight: bolder;
     font-size: 32px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
     .container {
-        grid-template-columns: 2fr;
+        width: 100%;
+        grid-template-columns: 1fr;
         place-items: center;
     }
 
     .fab {
         width: 48px;
         height: 48px;
+    }
+
+    .card.memo{
+        width: 85%;
+        height: 300px;
     }
 }
