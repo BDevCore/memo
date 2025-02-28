@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  const modal = document.getElementById("addMemoModal");
-  const createMemo = document.getElementById("create-memo");
-  const closeBtn = document.querySelector(".close");
-  const saveBtn = document.getElementById("saveMemo");
-
   const fabToggle = document.getElementById("menu-toggle-item");
   const fabToggleIcon = document.getElementById("fab-toggle-icon");
+
+  $('#create-memo').click(()=>{
+    $('#newMemoModal').modal('show');
+  })
+
   fabToggle.addEventListener("click", function (event) {
 
     document.getElementById("fabContainer").classList.toggle("fab-expanded");
@@ -24,25 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!fabContainer.contains(event.target)) {
       fabContainer.classList.remove("fab-expanded");
       fabToggleIcon.classList.replace("fa-xmark", "fa-list-ul");
-    }
-  });
-
-  // Open modal
-  createMemo.addEventListener("click", () => {
-    modal.style.display = "flex";
-    fabContainer.classList.remove("fab-expanded");
-    fabToggleIcon.classList.replace("fa-xmark", "fa-list-ul");
-  });
-
-  // Close modal
-  closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
-
-  // Close modal when clicking outside
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
     }
   });
 
