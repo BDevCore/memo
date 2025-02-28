@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable FAB</title>
+    <!-- <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .fab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #007bff;
+            color: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0 15px;
+        }
+
+        .fab:hover {
+            width: 160px;
+            border-radius: 30px;
+        }
+
+        .fab i {
+            font-size: 20px;
+            transition: margin-right 0.3s ease-in-out;
+        }
+
+        .fab:hover i {
+            margin-right: 10px;
+        }
+
+        .fab span {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .fab:hover span {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="fab-container">
+        <div class="fab">
+            <i class="fas fa-user-plus"></i>
+            <span>Add Profile</span>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Expandable FAB</title>
+    
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fab {
+            width: 60px;
+            height: 60px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-size: 24px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .fab:hover {
+            background: #0056b3;
+        }
+
+        .fab-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateY(10px);
+        }
+
+        .fab-container:hover .fab-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .fab-option {
+            width: 50px;
+            height: 50px;
+            background: #28a745;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .fab-option:hover {
+            background: #1e7e34;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="fab-container">
+        <div class="fab-options">
+            <div class="fab-option"><i class="fas fa-user"></i></div>
+            <div class="fab-option"><i class="fas fa-user-plus"></i></div>
+            <div class="fab-option"><i class="fas fa-user-edit"></i></div>
+        </div>
+        <div class="fab">
+            <i class="fas fa-plus"></i>
+        </div>
+    </div>
+
+</body>
+</html>

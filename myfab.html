@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
+    <title>FAB</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    html, body {
+        height: 100%;
+        width: 100%;
+    }
+    body {
+        background-color: #f4f4f4;
+        margin: 0;
+    }
+
+    /* Floating Action Button Container */
+    .fab-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* FAB Buttons */
+    .fab-item {
+        width: 56px;
+        height: 56px;
+        font-size: 24px;
+        color: white;
+        background-color: #454B1B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Hide Extra Buttons By Default */
+    .fab-item:not(:last-child) {
+        opacity: 0;
+        transform: translateY(10px);
+        visibility: hidden;
+        position: absolute;
+    }
+
+    /* When Expanded, Show Buttons Above Main FAB */
+    .fab-container.fab-expanded .fab-item:not(:last-child) {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        position: relative;
+    }
+
+    .fab-item:not(:last-child){
+        margin-bottom: 10px;
+    }
+
+</style>
+<body>
+
+    <div class="fab-container" id="fabContainer">
+        <div class="fab-item">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="fab-item">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="fab-item" id="menu-toggle-item">
+            <i class="fa-solid fa-list-ul" id="fab-toggle-icon"></i>
+        </div>
+    </div>
+
+    <script>
+        const fabToggle = document.getElementById("menu-toggle-item");
+        const fabToggleIcon = document.getElementById("fab-toggle-icon");
+        fabToggle.addEventListener("click", function() {
+            
+            document.getElementById("fabContainer").classList.toggle("fab-expanded");
+
+            if (fabContainer.classList.contains("fab-expanded")) {
+                fabToggleIcon.classList.replace("fa-list-ul", "fa-xmark");
+            } else {
+                fabToggleIcon.classList.replace("fa-xmark", "fa-list-ul");
+            }
+
+            event.stopPropagation(); 
+        });
+
+        document.addEventListener("click", function(event) {
+            if (!fabContainer.contains(event.target)) {
+                fabContainer.classList.remove("fab-expanded");
+                fabToggleIcon.classList.replace("fa-xmark", "fa-list-ul");
+            }
+        });
+    </script>
+
+</body>
+</html>
