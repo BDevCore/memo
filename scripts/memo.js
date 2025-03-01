@@ -2,9 +2,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const fabToggle = document.getElementById("menu-toggle-item");
   const fabToggleIcon = document.getElementById("fab-toggle-icon");
+  const bottomSheet = document.getElementById("bottomSheet");
+  const fabContainer = document.getElementById("fabContainer");
 
   $('#create-memo').click(()=>{
-    $('#newMemoModal').modal('show');
+    //$('#newMemoModal').modal('show');
+    bottomSheet.classList.toggle('active');
+    if (bottomSheet.classList.contains('active')){
+      fabContainer.style.display = 'none';
+    }else{
+      setTimeout(()=>{
+        fabContainer.style.display = 'flex';
+      }, 300);
+    }
   })
 
   fabToggle.addEventListener("click", function (event) {
@@ -77,3 +87,27 @@ document.addEventListener("click", function (event) {
     memoElement.remove();
   }
 });
+
+
+function openSheet() {
+  document.getElementById('bottomSheet').classList.add('active');
+  if (bottomSheet.classList.contains('active')){
+    fabContainer.style.display = 'none';
+  }else{
+    setTimeout(()=>{
+      fabContainer.style.display = 'flex';
+    }, 300);
+    
+  }
+}
+
+function closeSheet() {
+  document.getElementById('bottomSheet').classList.remove('active');
+  if (bottomSheet.classList.contains('active')){
+    fabContainer.style.display = 'none';
+  }else{
+    setTimeout(()=>{
+      fabContainer.style.display = 'flex';
+    }, 300);
+  }
+}

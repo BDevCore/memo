@@ -3,7 +3,6 @@
     width: 100%;
     overflow: hidden;
     resize: both;
-    min-height: 40px;
     line-height: 20px;
 }
 
@@ -13,18 +12,19 @@
 }
 
 .textarea[contenteditable]:focus {
-    border: 2px solid #36454F;
+    border: 2px solid #ddd;
     box-shadow: none;
 }
 
 #new-memo-edit {
-    border: 1px solid #36454F;
+    border: 1px solid #ddd;
     padding: 8px;
+    min-height: 70px;
 }
 
 #new-memo-edit:focus {
     outline: none;
-    border: 1px solid #36454F;
+    border: 1px solid #ddd;
 }
 
 * {
@@ -131,7 +131,7 @@ main {
 }
 
 .loader:before {
-    content: "Loading..."
+    content: "Please wait..."
 }
 
 @keyframes l3 {
@@ -307,41 +307,37 @@ main {
         width: 95%;
         height: 332px;
     }
+
+    .bottom-sheet {
+        width: 95% !important;
+    }
 }
 
-@media (min-width:320px) {
-    /* smartphones, iPhone, portrait 480x320 phones */
-}
-
-@media (min-width:481px) {
-    /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
-}
-
-@media (min-width:641px) {
-    /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
-}
-
-@media (min-width:961px) {
-    /* tablet, landscape iPad, lo-res laptops ands desktops */
-}
-
-@media (min-width:1025px) {
-    /* big landscape tablets, laptops, and desktops */
-}
-
-@media (min-width:1281px) {
-    /* hi-res laptops and desktops */
-}
-
-.fab-container {
+/* Action Bar */
+.action-bar {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: all 0.3s ease-in-out;
+    /* Adding transition for flex direction changes */
 }
 
+/* FAB Container */
+.fab-container {
+    margin-left: auto;
+    margin-right: 10px;
+    margin-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* FAB Item */
 .fab-item {
     width: 56px;
     height: 56px;
@@ -357,6 +353,7 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* Initially hidden FAB items */
 .fab-item:not(:last-child) {
     opacity: 0;
     transform: translateY(10px);
@@ -364,7 +361,7 @@ main {
     position: absolute;
 }
 
-/* When Expanded, Show Buttons Above Main FAB */
+/* Expand FAB items when active */
 .fab-container.fab-expanded .fab-item:not(:last-child) {
     opacity: 1;
     transform: translateY(0);
@@ -374,4 +371,57 @@ main {
 
 .fab-item:not(:last-child) {
     margin-bottom: 10px;
+}
+
+/* Bottom Sheet using transform and opacity for smooth animation */
+.bottom-sheet {
+    width: 720px;
+    background: #fafafa;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 12px 12px 0 0;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    /* Initially hidden below the viewport */
+    opacity: 0;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* When active, the bottom sheet comes into view */
+.bottom-sheet.active {
+    transform: translateY(0);
+    /* Move up to visible area */
+    opacity: 1;
+    /* Fully visible */
+}
+
+
+/* .bottom-sheet.active>* {
+    padding: 20px;
+} */
+
+.sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    /* border-bottom: 1px solid #ddd; */
+}
+
+.sheet-header .btn-close {
+    margin-left: auto;
+}
+
+.btn-close,
+.btn-close:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+#save-memo-btn {
+    margin-left: auto;
 }

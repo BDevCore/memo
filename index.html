@@ -115,15 +115,32 @@
     </div>
   </div> -->
 
-  <div class="fab-container" id="fabContainer">
-    <div class="fab-item">
-      <i class="fa-solid fa-user"></i>
+  <div class="action-bar">
+    <div class="fab-container" id="fabContainer">
+      <div class="fab-item">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div class="fab-item" id="create-memo">
+        <i class="fa-solid fa-plus"></i>
+      </div>
+      <div class="fab-item" id="menu-toggle-item">
+        <i class="fa-solid fa-list-ul" id="fab-toggle-icon"></i>
+      </div>
     </div>
-    <div class="fab-item" id="create-memo">
-      <i class="fa-solid fa-plus"></i>
-    </div>
-    <div class="fab-item" id="menu-toggle-item">
-      <i class="fa-solid fa-list-ul" id="fab-toggle-icon"></i>
+    <div class="bottom-sheet" id="bottomSheet">
+      <!-- <div class="sheet-header">
+        <button class="btn-close" aria-label="Close" onclick="closeSheet()"></button>
+      </div> -->
+      <span class="textarea mt-2 form-control" role="textbox" id="new-memo-edit" contenteditable></span>
+      <div class="sheet-header mt-2">
+        <button class="btn btn-tertiary btn-sm mt-2" onclick="closeSheet()" id="dismiss-sheet">
+          Dismiss
+        </button>
+        <button class="btn btn-secondary btn-sm mt-2" id="save-memo-btn">
+          Save
+        </button>
+      </div>
+
     </div>
   </div>
 
