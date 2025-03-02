@@ -8,7 +8,6 @@
     overflow: hidden;
     resize: vertical;
     line-height: 20px;
-    min-height: 200px;
 }
 
 .textarea[contenteditable]:empty::before {
@@ -21,13 +20,13 @@
     box-shadow: none;
 }
 
-#new-memo-edit {
+#memo-content-editor {
     border: 1px solid #ddd;
     padding: 8px;
     min-height: 70px;
 }
 
-#new-memo-edit:focus {
+#memo-content-editor:focus {
     outline: none;
     border: 1px solid #ddd;
 }
@@ -437,7 +436,7 @@ main {
     box-shadow: none;
 }
 
-.form-check-input:focus{
+.form-check-input:focus, .form-control:focus{
     border: 1px solid #ddd;
     outline: none;
     box-shadow: none;

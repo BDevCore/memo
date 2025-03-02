@@ -130,7 +130,7 @@ $('#save-memo-btn').click(() => {
     id: Math.floor(Math.random() * 1000000000),
     created: date.toLocaleString('en-GB', { hour12: false }),
     edited_on: "",
-    category: 'normal',
+    category: 'General',
     visibility: true,
     checked: false,
     checked_on: '',
@@ -193,7 +193,7 @@ function loadMemos() {
   $('#memos').html('');
   memos.forEach((memo, i) => {
     var checked = memo.checked ? 'checked' : '';
-    const checked_status =  (memo.checked_on && memo.checked) ? `Marked completed on ${memo.checked_on}` : ''
+    const checked_status = (memo.checked_on && memo.checked) ? `Marked completed on ${memo.checked_on}` : ''
     $('#memos').prepend(`<div class="card memo shadow-1">
                           <span class="memo-timestamp">${memo.created}</span>
                           <input type="checkbox" class="memo-check form-check-input ms-auto m-2" ${checked} data-id="${memo.id}">
@@ -209,8 +209,28 @@ function loadMemos() {
 
 
   $(".memo-edit").off('click').click((e) => {
-    const itemId = e.target.getAttribute("data-id");
-    console.log(itemId)
+    const memoId = e.target.getAttribute("data-id");
+    $('#memoEditModal').modal('show');
+    let memos = localStorage.getItem('memo');
+
+    if (!memos) memos = "[]";
+
+    memos = JSON.parse(memos);
+    memo = memos.find(obj => Number(obj.id) === Number(memoId));
+
+    if (!memo) {
+      showToast("Unable to found memo provided!", "Deleting memo", "");
+      return;
+    }
+
+    console.log(memo);
+
+    let memoText = memo.text;
+    let category = memo.category;
+
+
+    $('#memo-content-editor').val(memoText);
+    $('#memo-catogory-editor').val(category);
   });
 
   $(".memo-delete").click((e) => {
