@@ -300,10 +300,6 @@ main {
         place-items: center;
     }
 
-    main {
-        width: 100%;
-    }
-
     .fab {
         width: 48px;
         height: 48px;
