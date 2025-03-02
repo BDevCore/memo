@@ -1,9 +1,14 @@
+
+.modal{
+    z-index: 2000000;
+}
 .textarea {
     display: block;
     width: 100%;
     overflow: hidden;
     resize: vertical;
     line-height: 20px;
+    min-height: 200px;
 }
 
 .textarea[contenteditable]:empty::before {
@@ -53,7 +58,6 @@ main {
     /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
-    z-index: 10000;
     /* place-items: center; */
 }
 
@@ -314,37 +318,44 @@ main {
     .bottom-sheet {
         width: 95% !important;
     }
+
+    .fab-item{
+        margin-right: 4px;
+    }
+
+    .fab-item:last-child{
+        margin-bottom: 16px;
+    }
 }
 
-/* Action Bar */
+
 .action-bar {
     position: fixed;
-    bottom: 0;
     width: 100%;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     transition: all 0.3s ease-in-out;
-    /* Adding transition for flex direction changes */
+     z-index: 30000;
 }
 
 /* FAB Container */
 .fab-container {
-    margin-left: auto;
-    margin-right: 16px;
-    margin-bottom: 16px;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    z-index: 10;
+    position: absolute;
+   
 }
 
-/* FAB Item */
 .fab-item {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     font-size: 24px;
+    margin-right: 10px;
     color: white;
     background-color: #36454F;
     display: flex;
@@ -356,7 +367,10 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Initially hidden FAB items */
+.fab-item:last-child{
+    margin-bottom: 16px;
+}
+
 .fab-item:not(:last-child) {
     opacity: 0;
     transform: translateY(10px);
@@ -364,7 +378,6 @@ main {
     position: absolute;
 }
 
-/* Expand FAB items when active */
 .fab-container.fab-expanded .fab-item:not(:last-child) {
     opacity: 1;
     transform: translateY(0);
@@ -376,7 +389,7 @@ main {
     margin-bottom: 10px;
 }
 
-/* Bottom Sheet using transform and opacity for smooth animation */
+
 .bottom-sheet {
     width: 720px;
     background: #fafafa;
@@ -385,20 +398,18 @@ main {
     position: absolute;
     bottom: 0;
     transform: translateY(100%);
-    /* Initially hidden below the viewport */
     opacity: 0;
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    z-index: 50000;
 }
 
-/* When active, the bottom sheet comes into view */
+
 .bottom-sheet.active {
     transform: translateY(0);
-    /* Move up to visible area */
     opacity: 1;
-    /* Fully visible */
 }
 
 
@@ -411,6 +422,7 @@ main {
     justify-content: space-between;
     align-items: center;
     padding-bottom: 10px;
+    z-index: 50000;
     /* border-bottom: 1px solid #ddd; */
 }
 
@@ -446,4 +458,8 @@ main {
 
 .memo-edit-status{
     font-size: xx-small;
+}
+
+.toast-container{
+    z-index: 50000;
 }
