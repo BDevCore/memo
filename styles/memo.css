@@ -2,7 +2,7 @@
     display: block;
     width: 100%;
     overflow: hidden;
-    resize: both;
+    resize: vertical;
     line-height: 20px;
 }
 
@@ -47,11 +47,13 @@ body {
 /* Conatiner layout */
 
 main {
-    width: 100%;
+    width: 95%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    /* place-items: center; */
 }
 
 .container {
@@ -328,8 +330,8 @@ main {
 /* FAB Container */
 .fab-container {
     margin-left: auto;
-    margin-right: 10px;
-    margin-bottom: 4px;
+    margin-right: 16px;
+    margin-bottom: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -422,6 +424,25 @@ main {
     box-shadow: none;
 }
 
+.form-check-input:focus{
+    border: 1px solid #ddd;
+    outline: none;
+    box-shadow: none;
+}
+
 #save-memo-btn {
     margin-left: auto;
+}
+
+.g-button{
+    
+}
+
+.memo-check{
+    height: 21px;
+    width: 21px;
+}
+
+.memo-edit-status{
+    font-size: xx-small;
 }
