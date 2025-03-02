@@ -53,6 +53,7 @@ main {
     /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
+    z-index: 10000;
     /* place-items: center; */
 }
 
