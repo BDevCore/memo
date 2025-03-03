@@ -1,7 +1,7 @@
-
-.modal{
+.modal {
     z-index: 2000000;
 }
+
 .textarea {
     display: block;
     width: 100%;
@@ -31,7 +31,7 @@
     border: 1px solid #ddd;
 }
 
-#memo-editor{
+#memo-editor {
     min-height: 100px;
 }
 
@@ -87,8 +87,8 @@ main {
 }
 
 .card.memo {
-    width: 348px;
-    height: 356px;
+    width: 332px;
+    height: 338px;
 }
 
 .shadow-1 {
@@ -129,26 +129,54 @@ main {
 
 /* Loader progress */
 
+.loader,
+.loader:before,
+.loader:after {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    animation-fill-mode: both;
+    animation: bblFadInOut 1.8s infinite ease-in-out;
+}
+
 .loader {
-    width: fit-content;
-    font-weight: bold;
-    font-family: sans-serif;
-    font-size: 30px;
-    padding: 0 5px 8px 0;
-    background: repeating-linear-gradient(90deg, currentColor 0 8%, #0000 0 10%) 200% 100%/200% 3px no-repeat;
-    animation: l3 2s steps(6) infinite;
-    padding-bottom: 16px;
+    color: #36454F;
+    font-size: 7px;
+    position: relative;
+    text-indent: -9999em;
+    transform: translateZ(0);
+    animation-delay: -0.16s;
+}
+
+.loader:before,
+.loader:after {
+    content: '';
+    position: absolute;
+    top: 0;
 }
 
 .loader:before {
-    content: "Please wait..."
+    left: -3.5em;
+    animation-delay: -0.32s;
 }
 
-@keyframes l3 {
-    to {
-        background-position: 80% 100%
+.loader:after {
+    left: 3.5em;
+}
+
+@keyframes bblFadInOut {
+
+    0%,
+    80%,
+    100% {
+        box-shadow: 0 2.5em 0 -1.3em
+    }
+
+    40% {
+        box-shadow: 0 2.5em 0 0
     }
 }
+
 
 /* End of Loader */
 
@@ -163,10 +191,6 @@ main {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.33);
-}
-
-.overlay-item {
-    color: white;
 }
 
 
@@ -191,7 +215,7 @@ main {
 }
 
 .memo-timestamp {
-    font-size: 14px;
+    font-size: 11px;
     margin-left: auto;
     padding: 6px;
 }
@@ -315,7 +339,7 @@ main {
     }
 
     .card.memo {
-        width: 98%;
+        width: 95%;
         height: 348px;
     }
 
@@ -323,18 +347,18 @@ main {
         width: 98% !important;
     }
 
-    .fab-item{
+    .fab-item {
         margin-right: 4px;
     }
 
-    .fab-item:last-child{
+    .fab-item:last-child {
         margin-bottom: 16px;
     }
 
     .w-20 {
         width: 100% !important;
     }
-    
+
     .w-80 {
         width: 100% !important;
     }
@@ -349,7 +373,7 @@ main {
     flex-direction: column;
     align-items: center;
     transition: all 0.3s ease-in-out;
-     z-index: 30000;
+    z-index: 30000;
 }
 
 /* FAB Container */
@@ -360,7 +384,7 @@ main {
     flex-direction: column;
     align-items: center;
     position: absolute;
-   
+
 }
 
 .fab-item {
@@ -379,7 +403,7 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.fab-item:last-child{
+.fab-item:last-child {
     margin-bottom: 16px;
 }
 
@@ -449,7 +473,8 @@ main {
     box-shadow: none;
 }
 
-.form-check-input:focus, .form-control:focus{
+.form-check-input:focus,
+.form-control:focus {
     border: 1px solid #ddd;
     outline: none;
     box-shadow: none;
@@ -459,24 +484,22 @@ main {
     margin-left: auto;
 }
 
-.g-button{
-    
-}
+.g-button {}
 
-.memo-check{
+.memo-check {
     height: 21px;
     width: 21px;
 }
 
-.memo-edit-status{
+.memo-edit-status {
     font-size: xx-small;
 }
 
-.toast-container{
+.toast-container {
     z-index: 50000;
 }
 
-.text-small{
+.text-small {
     font-size: 14px;
 }
 
@@ -486,4 +509,8 @@ main {
 
 .w-80 {
     width: 80%;
+}
+
+.toast{
+    background-color: #fff;
 }

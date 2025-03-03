@@ -322,7 +322,7 @@ function loadMemos() {
     const memoId = e.target.getAttribute("data-id");
     $('#modal-confirm-pos-btn').removeClass("btn-primary").addClass('btn-danger');
     $('#modal-confirm-pos-btn').text('Delete');
-    $('#confirmation-modal-body').html('<p>Do you want to delete this memo?<br><br><small><strong>Changes can\'t be undone!</strong></small></p>');
+    $('#confirmation-modal-body').html('<p>Do you want to delete this memo?<br><small>This can\'t be undone!</small></p>');
     $('#modal-confirm-pos-btn').off('click').click((e) => {
       deleteMemo(memoId);
     })
