@@ -31,6 +31,10 @@
     border: 1px solid #ddd;
 }
 
+#memo-editor{
+    min-height: 100px;
+}
+
 * {
     box-sizing: border-box;
 }
