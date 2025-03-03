@@ -108,18 +108,23 @@
         <div class="modal-body d-flex flex-column">
           
           <div class="d-flex flex-column flex-md-row mt-2">
-            <label for="memo-catogory-editor p-2" class="me-3 text-black-50">Content:</label>
-            <textarea class="textarea form-control" role="textbox" id="memo-content-editor"></textarea>
+            <label for="memo-catogory-editor p-2" class="me-3 text-black-50 w-20">Content:</label>
+            <textarea class="textarea form-control w-80" role="textbox" id="memo-content-editor"></textarea>
           </div>
 
           <div class="d-flex flex-column flex-md-row mt-2">
-            <label for="memo-catogory-editor p-2" class="me-3 text-black-50">Category:</label>
-            <input type="text" class="form-control" id="memo-catogory-editor">
+            <label for="memo-catogory-editor p-2" class="me-3 text-black-50 w-20">Title:</label>
+            <input type="text" class="form-control w-80" id="memo-title-editor">
+          </div>
+
+          <div class="d-flex flex-column flex-md-row mt-2">
+            <label for="memo-catogory-editor p-2" class="me-3 text-black-50 w-20">Category:</label>
+            <input type="text" class="form-control w-80" id="memo-catogory-editor">
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-sm btn-primary">Save changes</button>
+          <button type="button" class="btn btn-sm btn-secondary" id="save-changes-btn">Save changes</button>
         </div>
       </div>
     </div>
@@ -150,6 +155,7 @@
       <!-- <div class="sheet-header">
         <button class="btn-close" aria-label="Close" onclick="closeSheet()"></button>
       </div> -->
+      <input type="text" id="memo-title" class="form-control" placeholder="Enter memo title">
       <textarea class="textarea mt-2 form-control" role="textbox" id="memo-editor" contenteditable placeholder="Enter text here..."></textarea>
       <div class="sheet-header mt-2">
         <button class="btn btn-secondary btn-sm mt-2" onclick="closeSheet()" id="dismiss-sheet">

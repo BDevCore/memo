@@ -183,6 +183,7 @@ main {
     padding: 6px;
     overflow-y: auto;
     white-space: pre-line;
+    margin-bottom: 38px;
 }
 
 .memo-timestamp {
@@ -461,4 +462,16 @@ main {
 
 .toast-container{
     z-index: 50000;
+}
+
+.text-small{
+    font-size: 14px;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.w-80 {
+    width: 80%;
 }

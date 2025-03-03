@@ -1,5 +1,22 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+  const tx = document.getElementsByTagName("textarea");
+  for (let i = 0; i < tx.length; i++) {
+    tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+    tx[i].addEventListener("input", OnInput, false);
+  }
+
+  function OnInput() {
+    this.style.height = "auto";
+    this.style.height = (this.scrollHeight) + "px";
+  }
+
+
+  $('#memoEditModal').on('shown.bs.modal', function (e) {
+
+  });
+
+
   const fabToggle = document.getElementById("menu-toggle-item");
   const fabToggleIcon = document.getElementById("fab-toggle-icon");
   const bottomSheet = document.getElementById("bottomSheet");
@@ -118,7 +135,7 @@ function closeSheet() {
 
 $('#save-memo-btn').click(() => {
   var memo = $('#memo-editor').val().trim();
-
+  var title = $('#memo-title').val().trim();
   if (!memo) return;
 
   var memoTxt = localStorage.getItem("memo");
@@ -128,12 +145,13 @@ $('#save-memo-btn').click(() => {
 
   memo = {
     id: Math.floor(Math.random() * 1000000000),
-    created: date.toLocaleString('en-GB', { hour12: false }),
+    created_on: date.toLocaleString('en-GB', { hour12: false }),
     edited_on: "",
     category: 'General',
     visibility: true,
     checked: false,
     checked_on: '',
+    title: title,
     text: memo
   }
 
@@ -193,10 +211,15 @@ function loadMemos() {
   $('#memos').html('');
   memos.forEach((memo, i) => {
     var checked = memo.checked ? 'checked' : '';
-    const checked_status = (memo.checked_on && memo.checked) ? `Marked completed on ${memo.checked_on}` : ''
+    const checked_status = (memo.checked_on && memo.checked) ? `Marked completed on ${memo.checked_on}` : '';
+    const timestamp_status = !memo.edited_on ? memo.created_on : `Edited on ${memo.edited_on}`;
+    const title = memo.title ? memo.title : '';
     $('#memos').prepend(`<div class="card memo shadow-1">
-                          <span class="memo-timestamp">${memo.created}</span>
+                          <span class="memo-timestamp">${timestamp_status}</span>
+                          <div class="d-flex align-items-center">
+                          <span class="text-small ps-2"><strong>${title}</strong></span>
                           <input type="checkbox" class="memo-check form-check-input ms-auto m-2" ${checked} data-id="${memo.id}">
+                          </div>
                           <div class="memo-text-preview">${memo.text}</div>
                           <div class="memo-footer-bar">
                             <i class="fa-solid fa-pen me-3 memo-edit" data-id="${memo.id}"></i>
@@ -209,8 +232,8 @@ function loadMemos() {
 
 
   $(".memo-edit").off('click').click((e) => {
+
     const memoId = e.target.getAttribute("data-id");
-    $('#memoEditModal').modal('show');
     let memos = localStorage.getItem('memo');
 
     if (!memos) memos = "[]";
@@ -223,14 +246,76 @@ function loadMemos() {
       return;
     }
 
-    console.log(memo);
-
-    let memoText = memo.text;
-    let category = memo.category;
+    const memoText = memo.text;
+    const category = memo.category;
+    const title = memo.title;
 
 
     $('#memo-content-editor').val(memoText);
     $('#memo-catogory-editor').val(category);
+    $('#memo-title-editor').val(title);
+
+    $('#save-changes-btn').prop('disabled', true);
+
+    $('#memoEditModal').modal('show');
+
+    setTimeout(() => {
+      document.getElementById("memo-content-editor").style.height = "auto";
+      document.getElementById("memo-content-editor").style.height = document.getElementById("memo-content-editor").scrollHeight + "px";
+    }, 150);
+
+
+    $('#memo-content-editor').on('keyup', (e)=>{
+      const changes = e.target.value;
+      if (changes !== memo.text) $('#save-changes-btn').prop('disabled', false);
+      else $('#save-changes-btn').prop('disabled', true);
+    });
+
+    $('#memo-catogory-editor').on('keyup', (e)=>{
+      const changes = e.target.value;
+      if (changes !== memo.category) $('#save-changes-btn').prop('disabled', false);
+      else $('#save-changes-btn').prop('disabled', true);
+    });
+
+    $('#memo-title-editor').on('keyup', (e)=>{
+      const changes = e.target.value;
+      if (changes !== memo.title) $('#save-changes-btn').prop('disabled', false);
+      else $('#save-changes-btn').prop('disabled', true);
+    });
+    
+    $('#save-changes-btn').off('click').click((e) => {
+
+      const newText = $('#memo-content-editor').val();
+      const newCategory = $('#memo-catogory-editor').val();
+      const newTitle = $('#memo-title-editor').val();
+
+      const memoIndex = memos.findIndex(obj => String(obj.id) === String(memoId));
+      const dateNow = new Date().toLocaleString('en-GB', { hour12: false });
+
+      if (memoIndex !== -1) {
+
+        memos[memoIndex].text = newText;
+        memos[memoIndex].category = newCategory;
+        memos[memoIndex].edited_on = dateNow;
+        memos[memoIndex].title = newTitle;
+
+        localStorage.setItem('memo', JSON.stringify(memos));
+
+        $('#memoEditModal').modal('hide');
+        showToast("Memo state updated!", "Updating memo", "");
+
+        $('#memo-content-editor').val('');
+        $('#memo-catogory-editor').val('');
+        $('#memo-title-editor').val('');
+
+      } else {
+        console.warn("Memo not found with ID:", memoId);
+        showToast("Memo not found!", "Updating memo", "");
+      }
+
+
+    })
+
   });
 
   $(".memo-delete").click((e) => {
