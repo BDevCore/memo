@@ -83,8 +83,8 @@ main {
 }
 
 .card.memo {
-    width: 342px;
-    height: 342px;
+    width: 348px;
+    height: 356px;
 }
 
 .shadow-1 {
@@ -311,12 +311,12 @@ main {
     }
 
     .card.memo {
-        width: 95%;
-        height: 332px;
+        width: 98%;
+        height: 348px;
     }
 
     .bottom-sheet {
-        width: 95% !important;
+        width: 98% !important;
     }
 
     .fab-item{
